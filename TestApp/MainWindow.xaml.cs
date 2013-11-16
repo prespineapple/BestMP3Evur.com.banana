@@ -1,20 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.IO;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.IO;
-using Microsoft.Win32;
-using System.Windows.Forms;
 
 namespace TestApp
 {
@@ -26,7 +15,7 @@ namespace TestApp
         public MainWindow()
         {
             InitializeComponent();
-
+            hammerPants.ItemsSource = new List<Song>();
         }
 
         private void ListDirectory(System.Windows.Controls.TreeView treeView, string path)
@@ -91,13 +80,16 @@ namespace TestApp
 
         private void getMp3s(string path)
         {
+            List<Song> songs = new List<Song>();
             foreach (var file in new DirectoryInfo(path).GetFiles())
             {
                 if (file.Extension.ToLower().Equals(".mp3"))
                 {
-                    DataGridViewRow row = hammerPants.Rows;
+                    songs.Add(new Song(file.FullName));
                 }
             }
+
+            hammerPants.ItemsSource = songs;
         }
 
 
