@@ -12,7 +12,7 @@
         <Button x:Name="StopBtn" Content="[  ]" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="268,516,0,0" VerticalAlignment="Top" Width="47" RenderTransformOrigin="-0.287,-0.045"/>
         <Button x:Name="NextBtn" Content="| &gt;" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="335,516,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.287,-0.045"/>
         <Button x:Name="PrevBtn" Content="&lt; |" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="138,516,0,0" VerticalAlignment="Top" Width="47" RenderTransformOrigin="-0.287,-0.045"/>
-        <Button x:Name="ImportMusicBtn" Content="+" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="449,516,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.287,-0.045"/>
+        <Button x:Name="ImportMusicBtn" Content="+" Grid.Column="1" HorizontalAlignment="Left" Height="44" Margin="449,516,0,0" VerticalAlignment="Top" Width="46" RenderTransformOrigin="-0.287,-0.045" Click="ImportMusicBtn_Click_1"/>
         
         <DataGrid Name="hammerPants" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="374" Margin="1,58,0,0" VerticalAlignment="Top" Width="494" Grid.Column="1"/>
         

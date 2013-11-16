@@ -18,7 +18,21 @@ namespace TestApp
             hammerPants.ItemsSource = new List<Song>();
         }
 
-        private void ImportMusicBtn_Click(object sender, RoutedEventArgs e)
+        private void getMp3s(string path)
+        {
+            List<Song> songs = new List<Song>();
+            foreach (var file in new DirectoryInfo(path).GetFiles())
+            {
+                if (file.Extension.ToLower().Equals(".mp3"))
+                {
+                    songs.Add(new Song(file.FullName));
+                }
+            }
+
+            hammerPants.ItemsSource = songs;
+        }
+
+        private void ImportMusicBtn_Click_1(object sender, RoutedEventArgs e)
         {
             string path = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -34,21 +48,6 @@ namespace TestApp
 
             }
         }
-
-        private void getMp3s(string path)
-        {
-            List<Song> songs = new List<Song>();
-            foreach (var file in new DirectoryInfo(path).GetFiles())
-            {
-                if (file.Extension.ToLower().Equals(".mp3"))
-                {
-                    songs.Add(new Song(file.FullName));
-                }
-            }
-
-            hammerPants.ItemsSource = songs;
-        }
-
 
     }
 }
