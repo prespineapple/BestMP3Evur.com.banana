@@ -45,7 +45,6 @@ namespace TestApp
             if (path != null && path.Length > 0)
             {
                 getMp3s(path);
-
             }
         }
 
