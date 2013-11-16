@@ -7,6 +7,7 @@ namespace TestApp
         public Song(String filePath)
         {
             TagLib.File file = TagLib.File.Create(filePath);
+            
         }
     }
 }
