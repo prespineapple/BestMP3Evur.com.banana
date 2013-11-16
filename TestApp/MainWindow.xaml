@@ -18,7 +18,7 @@
         
         
         <TreeView x:Name="FSTreeView" HorizontalAlignment="Left" Height="250" Margin="23,58,0,0" VerticalAlignment="Top" Width="236"/>
-        <DataGrid Name="hammerPants" HorizontalAlignment="Left" Height="374" Margin="1,58,0,0" VerticalAlignment="Top" Width="494" Grid.Column="1"/>
+        <DataGrid Name="hammerPants" ItemsSource="{Binding}" HorizontalAlignment="Left" Height="374" Margin="1,58,0,0" VerticalAlignment="Top" Width="494" Grid.Column="1"/>
         <ListBox Grid.Column="1" Height="374" Margin="527,58,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="135"/>
         
         <Label Content="Files" HorizontalAlignment="Left" Height="26" Margin="23,27,0,0" VerticalAlignment="Top" Width="136"/>
