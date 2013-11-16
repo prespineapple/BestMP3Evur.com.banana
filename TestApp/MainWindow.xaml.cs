@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace TestApp
@@ -12,10 +10,12 @@ namespace TestApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        MediaPlayer mp;
         public MainWindow()
         {
             InitializeComponent();
             hammerPants.ItemsSource = new List<Song>();
+            mp = new MediaPlayer();
         }
 
         private void getMp3s(string path)
@@ -32,8 +32,10 @@ namespace TestApp
             hammerPants.ItemsSource = songs;
         }
 
-        private void ImportMusicBtn_Click_1(object sender, RoutedEventArgs e)
+        private void ImportMusicBtn_Click(object sender, RoutedEventArgs e)
         {
+            //mp.setCurrentMp3("C:\\Users\\god\\Dropbox\\running_music\\Classified feat. David Myles - Inner Ninja.mp3");
+            //mp.playMp3();
             string path = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
 
@@ -47,6 +49,5 @@ namespace TestApp
                 getMp3s(path);
             }
         }
-
     }
 }
