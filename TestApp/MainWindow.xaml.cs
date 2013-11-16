@@ -18,38 +18,7 @@ namespace TestApp
             hammerPants.ItemsSource = new List<Song>();
         }
 
-        private void ListDirectory(System.Windows.Controls.TreeView treeView, string path)
-        {
-            treeView.Items.Clear();
-            var rootDirectoryInfo = new DirectoryInfo(path);
-            treeView.Items.Add(CreateDirectoryNode(rootDirectoryInfo));
-        }
-
-        private static TreeViewItem CreateDirectoryNode(DirectoryInfo directoryInfo)
-        {
-            var directoryNode = new TreeViewItem();
-
-            directoryNode.Header = directoryInfo.Name;
-            foreach (var directory in directoryInfo.GetDirectories())
-            {
-                if ((directory.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
-                {
-                    directoryNode.Items.Add(CreateDirectoryNode(directory));
-                }
-            }
-            foreach (var file in directoryInfo.GetFiles())
-            {
-                if (file.Extension.ToLower().Equals(".mp3"))
-                {
-                    var tn = new TreeViewItem();
-                    tn.Header = file.Name;
-                    directoryNode.Items.Add(tn);
-                }
-            }
-            return directoryNode;
-        }
-
-        private void SelectDirectoryButton_Click(object sender, RoutedEventArgs e)
+        private void ImportMusicBtn_Click(object sender, RoutedEventArgs e)
         {
             string path = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
@@ -59,22 +28,10 @@ namespace TestApp
                 path = dialog.SelectedPath;
             }
 
-            //"C:\\Users\\David\\Pictures\\"
             if (path != null && path.Length > 0)
             {
                 getMp3s(path);
-                try
-                {
-                    ListDirectory(FSTreeView, path);
-                }
-                catch (Exception ex)
-                {
-                    string messageBoxText = "Invalid Folder Selection.\nUnable to access hidden folders.\n" + ex.Message;
-                    string caption = "An Error Occurred";
-                    MessageBoxButton button = MessageBoxButton.OK;
-                    MessageBoxImage icon = MessageBoxImage.Error;
-                    System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
-                }
+
             }
         }
 
