@@ -26,7 +26,7 @@ namespace TestApp
         public MainWindow()
         {
             InitializeComponent();
-            
+
         }
 
         private void ListDirectory(System.Windows.Controls.TreeView treeView, string path)
@@ -42,10 +42,15 @@ namespace TestApp
 
             directoryNode.Header = directoryInfo.Name;
             foreach (var directory in directoryInfo.GetDirectories())
-                directoryNode.Items.Add(CreateDirectoryNode(directory));
+            {
+                if ((directory.Attributes & FileAttributes.Hidden) != FileAttributes.Hidden)
+                {
+                    directoryNode.Items.Add(CreateDirectoryNode(directory));
+                }
+            }
             foreach (var file in directoryInfo.GetFiles())
             {
-                if(file.Extension.ToLower().Equals(".gif"))
+                if (file.Extension.ToLower().Equals(".mp3"))
                 {
                     var tn = new TreeViewItem();
                     tn.Header = file.Name;
@@ -57,7 +62,7 @@ namespace TestApp
 
         private void SelectDirectoryButton_Click(object sender, RoutedEventArgs e)
         {
-            string path = string.Empty;
+            string path = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
 
             if (dialog.ShowDialog() == System.Windows.Forms.DialogResult.OK)
@@ -66,18 +71,31 @@ namespace TestApp
             }
 
             //"C:\\Users\\David\\Pictures\\"
-            if (!path.Equals(string.Empty))
+            if (path != null && path.Length > 0)
             {
+                getMp3s(path);
                 try
                 {
                     ListDirectory(FSTreeView, path);
-                }catch(Exception ex)
+                }
+                catch (Exception ex)
                 {
-                    string messageBoxText = "Invalid Folder Selection.\nUnable to access hidden folders.\n"+ex.Message;
+                    string messageBoxText = "Invalid Folder Selection.\nUnable to access hidden folders.\n" + ex.Message;
                     string caption = "An Error Occurred";
                     MessageBoxButton button = MessageBoxButton.OK;
                     MessageBoxImage icon = MessageBoxImage.Error;
                     System.Windows.MessageBox.Show(messageBoxText, caption, button, icon);
+                }
+            }
+        }
+
+        private void getMp3s(string path)
+        {
+            foreach (var file in new DirectoryInfo(path).GetFiles())
+            {
+                if (file.Extension.ToLower().Equals(".mp3"))
+                {
+                    DataGridViewRow row = hammerPants.Rows;
                 }
             }
         }
