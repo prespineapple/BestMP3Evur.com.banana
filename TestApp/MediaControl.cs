@@ -1,20 +1,19 @@
-﻿
-namespace TestApp
+﻿namespace TestApp
 {
-    class MediaPlayer
+    class MediaControl
     {
         WMPLib.WindowsMediaPlayer wmPlayer;
         string currentMp3;
-        public MediaPlayer()
+        public MediaControl()
         {
             wmPlayer = new WMPLib.WindowsMediaPlayer();
         }
 
         public void setCurrentMp3(string mp3FilePath)
         {
-            wmPlayer.controls.stop();
             currentMp3 = mp3FilePath;
             wmPlayer.URL = currentMp3;
+            wmPlayer.controls.stop();
         }
         public void playMp3()
         {
@@ -41,6 +40,11 @@ namespace TestApp
         {
 
             return wmPlayer.playState == WMPLib.WMPPlayState.wmppsPlaying;
+        }
+
+        public void setVolume(int volume)
+        {
+            wmPlayer.settings.volume = volume;
         }
     }
 }

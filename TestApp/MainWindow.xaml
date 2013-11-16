@@ -16,7 +16,7 @@
         </Grid.RowDefinitions>
         <Button Name="ImportMusicBtn" Content="+" Grid.Column="0" Grid.Row="1" Height="50" VerticalAlignment="Top" Click="ImportMusicBtn_Click"/>
 
-        <DataGrid Name="hammerPants" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1"/>
+        <DataGrid Name="SongList" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1" AutoGenerateColumns="True" SelectionChanged="SongList_SelectionChanged" SelectionMode="Single"/>
         <Grid Grid.Column="1" Grid.Row="2">            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
@@ -28,7 +28,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Name="VolumeLbl" Content="Volume" Grid.Row="0"/>
-                <Slider Name="VolumeSlider" Grid.Row="1"/>
+                <Slider Name="VolumeSlider" Grid.Row="1" TickFrequency="10" TickPlacement="BottomRight" Maximum="100" Minimum="0" ValueChanged="VolumeSlider_ValueChanged" />
             </Grid>
             <Grid Grid.Column="1">
                 <Grid.RowDefinitions>
@@ -36,7 +36,7 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Name="progress" Content="Song Progress" Grid.Row="0"/>
-                <Slider Name="slider" Grid.Row="1"/>
+                <Slider Name="SongSlider" Grid.Row="1" IsManipulationEnabled="False"/>
             </Grid>
         </Grid>       
         <Grid Grid.Column="1" Grid.Row="3">
@@ -45,11 +45,13 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
             <Button Name="PrevBtn" Content="&lt; |" Grid.Column="0"/>
-            <Button Name="PlayBtn" Content="&gt;"   Grid.Column="1"/>
-            <Button Name="StopBtn" Content="[  ]"   Grid.Column="2"/>
-            <Button Name="NextBtn" Content="| &gt;" Grid.Column="3"/>
+            <Button Name="PauseBtn" Content="| |" Grid.Column="1" Click="PauseBtn_Click"/>
+            <Button Name="PlayBtn" Content="&gt;"   Grid.Column="2" Click="PlayBtn_Click"/>
+            <Button Name="StopBtn" Content="[  ]"   Grid.Column="3" Click="StopBtn_Click"/>
+            <Button Name="NextBtn" Content="| &gt;" Grid.Column="4" Click="NextBtn_Click"/>
         </Grid>
     </Grid>
 </Window>
