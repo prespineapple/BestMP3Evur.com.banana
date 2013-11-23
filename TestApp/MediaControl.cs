@@ -3,7 +3,7 @@
     class MediaControl
     {
         WMPLib.WindowsMediaPlayer wmPlayer;
-        string currentMp3;
+        public string currentMp3;
         public MediaControl()
         {
             wmPlayer = new WMPLib.WindowsMediaPlayer();
@@ -22,20 +22,25 @@
         }
         public void playMp3()
         {
+            if(currentMp3 != null)
             wmPlayer.controls.play();
         }
 
         public void pauseMp3()
         {
+            if (currentMp3 != null)
             wmPlayer.controls.pause();
         }
 
         public void stopMp3()
          {
-            if (isPlaying())
-            {
-                wmPlayer.controls.stop();
-            }
+             if (currentMp3 != null)
+             {
+                 if (isPlaying())
+                 {
+                     wmPlayer.controls.stop();
+                 }
+             }
         }
 
         public bool isPlaying()

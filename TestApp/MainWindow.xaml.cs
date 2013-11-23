@@ -82,25 +82,31 @@ namespace TestApp
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (SongList.Items.Count != SongList.SelectedIndex + 1)
+            if (mp.currentMp3 != null)
             {
-                SelectSong(SongList.SelectedIndex+1);
-            }
-            else
-            {
-                SelectSong(0);
+                if (SongList.Items.Count != SongList.SelectedIndex + 1)
+                {
+                    SelectSong(SongList.SelectedIndex + 1);
+                }
+                else
+                {
+                    SelectSong(0);
+                }
             }
         }
 
         private void PrevBtn_Click(object sender, RoutedEventArgs e)
         {
-            if (!(SongList.SelectedIndex - 1 < 0))
+            if (mp.currentMp3 != null)
             {
-                SelectSong(SongList.SelectedIndex - 1);
-            }
-            else
-            {
-                SelectSong(SongList.Items.Count - 1);
+                if (!(SongList.SelectedIndex - 1 < 0))
+                {
+                    SelectSong(SongList.SelectedIndex - 1);
+                }
+                else
+                {
+                    SelectSong(SongList.Items.Count - 1);
+                }
             }
         }
 
@@ -115,10 +121,13 @@ namespace TestApp
 
         private void SongSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
         {
-            mp.SetProgress(e.NewValue);
-            SongSlider.Minimum = 0;
-            SongSlider.Maximum = mp.SongDuration();
-            progress.Content = SecondsToMinSec(SongSlider.Maximum);
+            if (mp.currentMp3 != null)
+            {
+                mp.SetProgress(e.NewValue);
+                SongSlider.Minimum = 0;
+                SongSlider.Maximum = mp.SongDuration();
+                progress.Content = SecondsToMinSec(SongSlider.Maximum);
+            }
         }
 
         private string SecondsToMinSec(double duration)
