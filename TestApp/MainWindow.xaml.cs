@@ -23,7 +23,6 @@ namespace TestApp
 
         private void getMp3s(string path)
         {
-            path = "C:\\Users\\god\\Dropbox\\running_music";
             List<Song> songs = new List<Song>();
             foreach (var file in new DirectoryInfo(path).GetFiles())
             {
