@@ -3,6 +3,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using System.Windows.Input;
 
 namespace TestApp
 {
@@ -23,7 +24,7 @@ namespace TestApp
 
         private void getMp3s(string path)
         {
-            path = "C:\\Windows\\winsxs\\amd64_microsoft-windows-musicsamples_31bf3856ad364e35_6.1.7600.16385_none_06495209cbd8e93b";
+            path = "C:\\Users\\god\\Dropbox\\running_music";
             List<Song> songs = new List<Song>();
             foreach (var file in new DirectoryInfo(path).GetFiles())
             {
@@ -77,7 +78,19 @@ namespace TestApp
 
         private void SongList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            nextSong = ((Song)SongList.CurrentItem).getFilePath();
+            if (SongList != null && SongList.CurrentItem != null)
+            {
+                nextSong = ((Song)SongList.CurrentItem).getFilePath();
+            }
+
+        }
+
+        private void SongList_DoubleClick(object sender, RoutedEventArgs m)
+        {
+            if (SongList != null && SongList.CurrentItem != null)
+            {
+                PlayBtn_Click(sender, m);
+            }
         }
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
@@ -132,8 +145,8 @@ namespace TestApp
 
         private string SecondsToMinSec(double duration)
         {
-            int minutes = (int) duration / 60;
-            int seconds = (int) duration % 60;
+            int minutes = (int)duration / 60;
+            int seconds = (int)duration % 60;
             return string.Format("{0}:{1}", minutes, seconds);
         }
 

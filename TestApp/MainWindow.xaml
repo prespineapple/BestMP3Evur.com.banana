@@ -24,7 +24,7 @@
             <Image Source="Images/import.png"></Image>
         </Button>
 
-        <DataGrid Name="SongList" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1" AutoGenerateColumns="True" SelectionChanged="SongList_SelectionChanged" SelectionMode="Single"/>
+        <DataGrid Name="SongList" ItemsSource="{Binding}" Grid.Column="1" Grid.Row="1" AutoGenerateColumns="True" SelectionChanged="SongList_SelectionChanged" SelectionMode="Single" MouseDoubleClick="SongList_DoubleClick"/>
         <Grid Grid.Column="1" Grid.Row="2">            
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="1*"/>
