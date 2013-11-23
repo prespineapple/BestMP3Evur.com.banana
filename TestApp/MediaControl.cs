@@ -9,6 +9,11 @@
             wmPlayer = new WMPLib.WindowsMediaPlayer();
         }
 
+        public void SetProgress(double pos)
+        {
+            wmPlayer.controls.currentPosition = pos;
+        }
+
         public void setCurrentMp3(string mp3FilePath)
         {
             currentMp3 = mp3FilePath;
@@ -22,14 +27,11 @@
 
         public void pauseMp3()
         {
-            if (isPlaying())
-            {
-                wmPlayer.controls.pause();
-            }
+            wmPlayer.controls.pause();
         }
 
         public void stopMp3()
-        {
+         {
             if (isPlaying())
             {
                 wmPlayer.controls.stop();
@@ -46,5 +48,11 @@
         {
             wmPlayer.settings.volume = volume;
         }
+
+        public double SongDuration()
+        {
+            return wmPlayer.currentMedia.duration;
+        }
+
     }
 }

@@ -20,7 +20,7 @@ namespace TestApp
                 title = file.Tag.Title;
             else
                 title = fi.Name;
-            artist = file.Tag.FirstArtist;
+            artist = file.Tag.FirstPerformer;
             duration = String.Format("{0}:{1}:{2}",file.Properties.Duration.Hours.ToString("D2"),file.Properties.Duration.Minutes.ToString("D2"),file.Properties.Duration.Seconds.ToString("D2"));
             album = file.Tag.Album;
         }

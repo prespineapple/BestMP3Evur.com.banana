@@ -23,6 +23,7 @@ namespace TestApp
 
         private void getMp3s(string path)
         {
+            path = "C:\\Windows\\winsxs\\amd64_microsoft-windows-musicsamples_31bf3856ad364e35_6.1.7600.16385_none_06495209cbd8e93b";
             List<Song> songs = new List<Song>();
             foreach (var file in new DirectoryInfo(path).GetFiles())
             {
@@ -91,6 +92,18 @@ namespace TestApp
             }
         }
 
+        private void PrevBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (!(SongList.SelectedIndex - 1 < 0))
+            {
+                SelectSong(SongList.SelectedIndex - 1);
+            }
+            else
+            {
+                SelectSong(SongList.Items.Count - 1);
+            }
+        }
+
         public void SelectSong(int index)
         {
             Song song = (Song)SongList.Items[index];
@@ -98,6 +111,26 @@ namespace TestApp
             mp.playMp3();
             SongList.CurrentItem = SongList.Items[index];
             SongList.SelectedIndex = index;
+        }
+
+        private void SongSlider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            mp.SetProgress(e.NewValue);
+            SongSlider.Minimum = 0;
+            SongSlider.Maximum = mp.SongDuration();
+            progress.Content = SecondsToMinSec(SongSlider.Maximum);
+        }
+
+        private string SecondsToMinSec(double duration)
+        {
+            int minutes = (int) duration / 60;
+            int seconds = (int) duration % 60;
+            return string.Format("{0}:{1}", minutes, seconds);
+        }
+
+        private double PercentOfSiderToSecondsIntoSong(double percent)
+        {
+            return mp.SongDuration() * percent;
         }
     }
 }

@@ -131,6 +131,20 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </COMReference>
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\back.png" />
+    <Resource Include="Images\forward.png" />
+    <Resource Include="Images\import.png" />
+    <Resource Include="Images\mainbar.png" />
+    <Resource Include="Images\next.png" />
+    <Resource Include="Images\pause.png" />
+    <Resource Include="Images\play.png" />
+    <Resource Include="Images\prev.png" />
+    <Resource Include="Images\slider.png" />
+    <Resource Include="Images\sliderbar.png" />
+    <Resource Include="Images\stop.png" />
+    <Resource Include="Images\vol.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
