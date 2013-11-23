@@ -3,7 +3,6 @@ using System.IO;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using System.Windows.Input;
 
 namespace TestApp
 {
@@ -13,7 +12,7 @@ namespace TestApp
     public partial class MainWindow : Window
     {
         private MediaControl mp;
-        private string nextSong;
+        private string nextSong, currentSong;
         public MainWindow()
         {
             InitializeComponent();
@@ -39,8 +38,6 @@ namespace TestApp
 
         private void ImportMusicBtn_Click(object sender, RoutedEventArgs e)
         {
-            //mp.setCurrentMp3("C:\\Users\\god\\Dropbox\\running_music\\Classified feat. David Myles - Inner Ninja.mp3");
-            //mp.playMp3();
             string path = null;
             var dialog = new System.Windows.Forms.FolderBrowserDialog();
 
@@ -67,8 +64,13 @@ namespace TestApp
 
         private void PlayBtn_Click(object sender, RoutedEventArgs e)
         {
-            mp.setCurrentMp3(nextSong);
+            if (currentSong == null || !currentSong.Equals(nextSong))
+            {
+                currentSong = nextSong;
+                mp.setCurrentMp3(nextSong);
+            }
             mp.playMp3();
+
         }
 
         private void PauseBtn_Click(object sender, RoutedEventArgs e)
@@ -95,6 +97,11 @@ namespace TestApp
 
         private void NextBtn_Click(object sender, RoutedEventArgs e)
         {
+            GoToNextSong();
+        }
+
+        private void GoToNextSong()
+        {
             if (mp.currentMp3 != null)
             {
                 if (SongList.Items.Count != SongList.SelectedIndex + 1)
@@ -105,6 +112,7 @@ namespace TestApp
                 {
                     SelectSong(0);
                 }
+                currentSong = nextSong;
             }
         }
 
@@ -120,8 +128,11 @@ namespace TestApp
                 {
                     SelectSong(SongList.Items.Count - 1);
                 }
+                currentSong = nextSong;
             }
         }
+
+
 
         public void SelectSong(int index)
         {
@@ -137,9 +148,6 @@ namespace TestApp
             if (mp.currentMp3 != null)
             {
                 mp.SetProgress(e.NewValue);
-                SongSlider.Minimum = 0;
-                SongSlider.Maximum = mp.SongDuration();
-                progress.Content = SecondsToMinSec(SongSlider.Maximum);
             }
         }
 

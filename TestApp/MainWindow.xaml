@@ -18,7 +18,6 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="30*"/>
             <RowDefinition Height="4*"/>
-            <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
         <Button Name="ImportMusicBtn" Grid.Column="0" Grid.Row="1" Height="50" VerticalAlignment="Top" Click="ImportMusicBtn_Click"  Style="{StaticResource ButtonStyle}" ToolTip="Choose Music Folder">
             <Image Source="Images/import.png"></Image>
@@ -36,41 +35,36 @@
                     <RowDefinition Height="1*"/>
                 </Grid.RowDefinitions>
                 <Label Name="VolumeLbl" Content="Volume" Grid.Row="0"/>
-                <Slider Name="VolumeSlider" Grid.Row="1" TickFrequency="10" TickPlacement="BottomRight" Maximum="100" Minimum="0" ValueChanged="VolumeSlider_ValueChanged" />
+                <Slider Name="VolumeSlider" IsMoveToPointEnabled="True" Grid.Row="1" TickFrequency="10" TickPlacement="BottomRight" Maximum="100" Minimum="0" ValueChanged="VolumeSlider_ValueChanged" />
             </Grid>
             <Grid Grid.Column="1">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="1*"/>
-                    <RowDefinition Height="1*"/>
-                </Grid.RowDefinitions>
-                <Label Name="progress" Content="Song Progress" Grid.Row="0"/>
-                <Slider Name="SongSlider" Grid.Row="1" Maximum="100" Minimum="0" IsManipulationEnabled="False" ValueChanged="SongSlider_ValueChanged"/>
+                <Grid Grid.Column="1" Grid.Row="3">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Name="PrevBtn" Grid.Column="0" Click="PrevBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Previous Song">
+                        <Image Source="Images/back.png"></Image>
+                    </Button>
+                    <Button Name="PauseBtn" Grid.Column="1" Click="PauseBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Pause">
+                        <Image Source="Images/pause.png"></Image>
+                    </Button>
+                    <Button Name="PlayBtn" Grid.Column="2" Click="PlayBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Play">
+                        <Image Source="Images/play.png"></Image>
+                    </Button>
+                    <Button Name="StopBtn" Grid.Column="3" Click="StopBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Stop">
+                        <Image Source="Images/stop.png"></Image>
+                    </Button>
+                    <Button Name="NextBtn" Grid.Column="4" Click="NextBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Next Song">
+                        <Image Source="Images/forward.png"></Image>
+                    </Button>
+                </Grid>
             </Grid>
         </Grid>       
-        <Grid Grid.Column="1" Grid.Row="3">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            
-            <Button Name="PrevBtn" Grid.Column="0" Click="PrevBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Previous Song">
-                <Image Source="Images/back.png"></Image>
-            </Button>
-            <Button Name="PauseBtn" Grid.Column="1" Click="PauseBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Pause">
-                <Image Source="Images/pause.png"></Image>
-            </Button>
-            <Button Name="PlayBtn" Grid.Column="2" Click="PlayBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Play">
-                <Image Source="Images/play.png"></Image>
-            </Button>
-            <Button Name="StopBtn" Grid.Column="3" Click="StopBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Stop">
-                <Image Source="Images/stop.png"></Image>
-            </Button>
-            <Button Name="NextBtn" Grid.Column="4" Click="NextBtn_Click" Style="{StaticResource ButtonStyle}" ToolTip="Next Song">
-                <Image Source="Images/forward.png"></Image>
-            </Button>
-        </Grid>
+        
     </Grid>
 </Window>
