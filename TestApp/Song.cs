@@ -1,7 +1,7 @@
 ﻿using System;
 using System.IO;
 
-namespace TestApp
+namespace MP3Player
 {
     class Song
     {
